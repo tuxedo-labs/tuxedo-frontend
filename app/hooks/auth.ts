@@ -24,3 +24,19 @@ export const authRegister = async (
     console.error("There was a problem with the fetch operation:", error);
   }
 };
+
+export const authLogin = async (email: string, password: string) => {
+  try {
+    const response = await fetch(`${API}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+  }
+};
