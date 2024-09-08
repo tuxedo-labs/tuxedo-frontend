@@ -40,3 +40,23 @@ export const authLogin = async (email: string, password: string) => {
     console.error("There was a problem with the fetch operation:", error);
   }
 };
+
+export const verifyTokne = async (token: string) => {
+  try {
+    const response = await fetch(`${API}/auth/verify-token`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resendVerifyToken = async () => {};
