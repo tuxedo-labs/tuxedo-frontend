@@ -1,10 +1,11 @@
-import React from "react"
-import { AuthFormType } from "~/types/FormType"
+import React from "react";
+import { AuthFormType } from "~/types/FormType";
 
 export const AuthForm: React.FC<AuthFormType> = ({ onSubmit, children }) => {
   return (
-    <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
+    <form className="mt-8 space-y-6" onSubmit={onSubmit}>
       {children}
     </form>
-  )
-}
+  );
+};
+

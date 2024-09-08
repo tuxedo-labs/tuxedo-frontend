@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthLogin } from '~/hooks/auth';
 import { DefaultInput } from '~/components/elements/Input';
 import { AuthForm } from '~/components/fragments/Form';
 import { DefaultButton } from '~/components/elements/Button';
 import { motion } from 'framer-motion';
+import { useAuthVerifyToken } from '~/hooks/auth';
 
-export default function AuthLogin() {
+export default function VerifyToken() {
   const navigate = useNavigate();
   const {
-    email,
-    password,
+    token,
     message,
-    isLoggedIn,
-    handleEmailChange,
-    handlePasswordChange,
+    isVerified,
+    handleTokenChange,
     handleSubmit,
-  } = useAuthLogin();
+  } = useAuthVerifyToken();
 
   const inputVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -29,31 +27,34 @@ export default function AuthLogin() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isVerified) {
       const timer = setTimeout(() => {
-        navigate('/dashboard');
-      }, 2000);
+        navigate('/auth/login');
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [isLoggedIn, navigate]);
+  }, [isVerified, navigate]);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
       <div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <h2 className="text-3xl font-extrabold text-center text-gray-900 dark:text-white">
-          Login to Your Account
+          Verify Your Token
         </h2>
-        {message && !isLoggedIn && (
-          <div className="mb-4 text-center text-red-600 dark:text-red-400">
-            {message}
-          </div>
-        )}
-        {isLoggedIn && (
-          <div className="mb-4 text-center text-green-600 dark:text-green-400">
-            Login successful! Redirecting to dashboard...
-          </div>
-        )}
+        <div className="mb-4 text-center">
+          {isVerified ? (
+            <div className="text-green-600 dark:text-green-400">
+              Token verified successfully!
+            </div>
+          ) : (
+            message && (
+              <div className="text-red-600 dark:text-red-400">
+                {message}
+              </div>
+            )
+          )}
+        </div>
         <AuthForm onSubmit={handleSubmit}>
           <motion.div
             initial="hidden"
@@ -62,12 +63,12 @@ export default function AuthLogin() {
             transition={{ duration: 0.5 }}
           >
             <DefaultInput
-              type="email"
+              type="text"
               required={true}
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="example@gmail.com"
-              label="Email"
+              value={token}
+              onChange={handleTokenChange}
+              placeholder="Enter your verification token"
+              label="Verification Token"
             />
           </motion.div>
 
@@ -77,24 +78,8 @@ export default function AuthLogin() {
             variants={inputVariants}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <DefaultInput
-              type="password"
-              required={true}
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="********"
-              label="Password"
-            />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={inputVariants}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
             <motion.div whileHover="hover" whileTap="tap" variants={buttonVariants}>
-              <DefaultButton type="submit">Login</DefaultButton>
+              <DefaultButton type="submit">Verify Token</DefaultButton>
             </motion.div>
           </motion.div>
         </AuthForm>
