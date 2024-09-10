@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { DefaultInput } from '~/components/elements/Input';
 import { AuthForm } from '~/components/fragments/Form';
 import { DefaultButton } from '~/components/elements/Button';
@@ -8,11 +8,12 @@ import { useAuthVerifyToken } from '~/hooks/auth';
 
 export default function VerifyToken() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     token,
     message,
     isVerified,
-    handleTokenChange,
+    setToken,
     handleSubmit,
   } = useAuthVerifyToken();
 
@@ -25,6 +26,16 @@ export default function VerifyToken() {
     hover: { scale: 1.05 },
     tap: { scale: 0.95 },
   };
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const tokenFromUrl = queryParams.get('token');
+
+    if (tokenFromUrl) {
+      setToken(tokenFromUrl);
+      handleSubmit();
+    }
+  }, [location.search, setToken, handleSubmit]);
 
   useEffect(() => {
     if (isVerified) {
@@ -66,7 +77,7 @@ export default function VerifyToken() {
               type="text"
               required={true}
               value={token}
-              onChange={handleTokenChange}
+              onChange={(e) => setToken(e.target.value)}
               placeholder="Enter your verification token"
               label="Verification Token"
             />
@@ -87,4 +98,5 @@ export default function VerifyToken() {
     </div>
   );
 }
+
 

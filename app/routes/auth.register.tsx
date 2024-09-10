@@ -24,11 +24,6 @@ export default function AuthRegister() {
     visible: { opacity: 1, y: 0 },
   };
 
-  const buttonVariants = {
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 },
-  };
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
       <div className="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
@@ -116,9 +111,7 @@ export default function AuthRegister() {
               variants={inputVariants}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <motion.div whileHover="hover" whileTap="tap" variants={buttonVariants}>
-                <DefaultButton type="submit">Register</DefaultButton>
-              </motion.div>
+              <DefaultButton type="submit">Register</DefaultButton>
             </motion.div>
           </AuthForm>
         )}

@@ -115,13 +115,7 @@ export const useAuthVerifyToken = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [isVerified, setIsVerified] = useState(false);
 
-  const handleTokenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setToken(event.target.value);
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     try {
       const response = await verifyToken(token);
       setMessage(response.message);
@@ -139,7 +133,7 @@ export const useAuthVerifyToken = () => {
     token,
     message,
     isVerified,
-    handleTokenChange,
+    setToken,
     handleSubmit,
   };
 };

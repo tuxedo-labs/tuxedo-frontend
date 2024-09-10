@@ -5,6 +5,13 @@ import { DefaultInput } from '~/components/elements/Input';
 import { AuthForm } from '~/components/fragments/Form';
 import { DefaultButton } from '~/components/elements/Button';
 import { motion } from 'framer-motion';
+import { MetaFunction } from '@remix-run/react';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login" },
+  ];
+};
 
 export default function AuthLogin() {
   const navigate = useNavigate();
@@ -23,15 +30,10 @@ export default function AuthLogin() {
     visible: { opacity: 1, y: 0 },
   };
 
-  const buttonVariants = {
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 },
-  };
-
   useEffect(() => {
     if (isLoggedIn) {
       const timer = setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/home');
       }, 2000);
 
       return () => clearTimeout(timer);
@@ -93,9 +95,7 @@ export default function AuthLogin() {
             variants={inputVariants}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <motion.div whileHover="hover" whileTap="tap" variants={buttonVariants}>
-              <DefaultButton type="submit">Login</DefaultButton>
-            </motion.div>
+            <DefaultButton type="submit">Login</DefaultButton>
           </motion.div>
         </AuthForm>
       </div>
