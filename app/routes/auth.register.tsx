@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useNavigate } from "@remix-run/react";
 import { useAuthRegister } from "~/hooks/auth";
 import { DefaultInput } from "~/components/elements/Input";
 import { AuthForm } from "~/components/fragments/Form";
@@ -5,6 +7,7 @@ import { DefaultButton } from "~/components/elements/Button";
 import { motion } from "framer-motion";
 
 export default function AuthRegister() {
+  const navigate = useNavigate();
   const {
     name,
     email,
@@ -23,6 +26,12 @@ export default function AuthRegister() {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigate('/home')
+    }
+  })
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">

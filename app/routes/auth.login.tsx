@@ -31,6 +31,9 @@ export default function AuthLogin() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigate('/home')
+    }
     if (isLoggedIn) {
       const timer = setTimeout(() => {
         navigate('/home');

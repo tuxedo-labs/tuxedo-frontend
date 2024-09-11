@@ -41,7 +41,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      navigate("/auth/login");
+      navigate("/auth/logout");
     }
   }, [loading, isAuthenticated, navigate]);
 
