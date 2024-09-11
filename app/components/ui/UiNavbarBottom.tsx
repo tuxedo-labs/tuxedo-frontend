@@ -1,4 +1,4 @@
-import ListSideBar from '../elements/List';
+import { ListSideBar } from '../elements/List';
 import { HomeIcons, PhotoIcons, PlusIcons, ProfileIcons, SettingIcons } from '../icons/Icons';
 import NavbarBottom from '../layouts/NavbarBottom';
 

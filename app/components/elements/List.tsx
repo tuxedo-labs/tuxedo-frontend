@@ -7,11 +7,6 @@ interface ListSideBarProps {
   label: string;
 }
 
-export const defaultList = () => {
-  // null
-  return null
-}
-
 export const ListSideBar: React.FC<ListSideBarProps> = ({ to, icon, label }) => {
   return (
     <Link to={to} className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group rounded-full">
