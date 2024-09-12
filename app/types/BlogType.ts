@@ -7,6 +7,7 @@ export interface Author {
   ID: number;
   name: string;
   email: string;
+  avatar: string;
 }
 
 export interface BlogData {
@@ -15,6 +16,7 @@ export interface BlogData {
   description: string;
   thumbnail: string;
   author: Author;
+  content?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -22,4 +24,6 @@ export interface BlogData {
 export interface BlogResponse {
   data: BlogData[];
 }
-
+export interface BlogDetailResponse {
+  data: BlogData;
+}

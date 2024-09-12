@@ -1,13 +1,12 @@
-import SideBar from "~/components/layouts/SideBar";
-import ListSideBar from "~/components/elements/List";
 import { useAuth } from "~/middleware/auth"
 import UiNavbarBottom from "~/components/ui/UiNavbarBottom";
+import { Loading } from "~/components/elements/Loading";
 
 export default function dashboard() {
   const { loading } = useAuth();
   if (loading) {
     return (
-      <div>Loading</div>
+      <Loading />
     )
   }
   return (

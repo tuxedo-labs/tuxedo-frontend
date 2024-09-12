@@ -5,7 +5,7 @@ import { DefaultInput } from '~/components/elements/Input';
 import { AuthForm } from '~/components/fragments/Form';
 import { DefaultButton } from '~/components/elements/Button';
 import { motion } from 'framer-motion';
-import { MetaFunction } from '@remix-run/react';
+import { Link, MetaFunction } from '@remix-run/react';
 
 export const meta: MetaFunction = () => {
   return [
@@ -98,6 +98,9 @@ export default function AuthLogin() {
             <DefaultButton type="submit">Login</DefaultButton>
           </motion.div>
         </AuthForm>
+        <motion.div initial="hidden" animate="visible" variants={inputVariants} transition={{ duration: 0.6, delay: 0.4 }} className='text-black dark:text-white'>
+          <p>you dont have account? <Link to="/auth/register" className='text-blue-500'>create account</Link></p>
+        </motion.div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
   const title = import.meta.env.VITE_APP_NAME;
 
   return (
-    <section className="bg-white dark:bg-gray-900 h-screen">
+    <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <Heading
           title={`${title} Blog`}
@@ -20,3 +20,6 @@ export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
   );
 };
 
+export const BlogDetailSection = () => {
+
+}
