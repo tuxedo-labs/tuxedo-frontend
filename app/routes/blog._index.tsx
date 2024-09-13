@@ -1,12 +1,13 @@
 import { BlogSection } from "~/components/fragments/BlogSection";
 import { ArticleCard } from "~/components/elements/ArticleCard";
 import { useBlogGetAll } from "~/hooks/blog";
+import { Loading } from "~/components/elements/Loading";
 
 export default function Blog() {
   const { blogs, loading, error } = useBlogGetAll()
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {

@@ -1,11 +1,13 @@
 import { useNavigate } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import { API } from "~/utils/api";
+import { jwtDecode } from "jwt-decode";
 
 export const useAuth = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState<"admin" | "member" | null>(null);
 
   useEffect(() => {
     const verifyToken = async () => {
@@ -23,7 +25,9 @@ export const useAuth = () => {
             "x-token": token,
           },
         });
-
+        const decoded: any = jwtDecode(token);
+        const userRole = decoded.role;
+        setRole(userRole === "admin" ? "admin" : "member");
         if (response.ok) {
           setIsAuthenticated(true);
         } else {
@@ -45,5 +49,5 @@ export const useAuth = () => {
     }
   }, [loading, isAuthenticated, navigate]);
 
-  return { isAuthenticated, loading };
+  return { isAuthenticated, loading, role };
 };

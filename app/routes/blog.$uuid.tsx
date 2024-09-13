@@ -1,5 +1,6 @@
 import { useParams } from "@remix-run/react";
 import { ArticleHeader } from "~/components/elements/ArticleHeader";
+import { Loading } from "~/components/elements/Loading";
 import BlogDetailSection from "~/components/fragments/BlogDetailSection";
 import ArticleLayout from "~/components/layouts/ArticleLayout";
 import { useBlogGetById } from "~/hooks/blog";
@@ -8,7 +9,7 @@ export default function BlogId() {
   const { uuid } = useParams<{ uuid: string }>();
   const { loading, error, blog } = useBlogGetById(uuid ?? "");
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
 
   if (!blog) return <p>No blog found</p>;

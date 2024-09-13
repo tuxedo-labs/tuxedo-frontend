@@ -6,3 +6,6 @@
 :root {
   font-family: "Roboto", system-ui;
 }
+::-webkit-scrollbar {
+  display: none;
+}

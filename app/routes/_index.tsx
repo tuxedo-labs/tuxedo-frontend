@@ -1,16 +1,8 @@
-import type { MetaFunction } from "@remix-run/node";
+import { Navigate } from "@remix-run/react";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
-
-export default function Index() {
+export default function _index() {
   return (
-    <>
-      <h1>hello world</h1>
-    </>
-  );
+    <Navigate to="/home" />
+  )
 }
+
