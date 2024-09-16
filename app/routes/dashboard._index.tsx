@@ -1,26 +1,17 @@
 import { MetaFunction } from '@remix-run/react';
-import { Loading } from '~/components/elements/Loading';
-import { useAuth } from '~/middleware/auth';
+import { useAuthContext } from '~/hoc/authProvider';
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: `Dashboard - ${import.meta.env.VITE_APP_NAME}` },
-  ];
+  return [{ title: `Dashboard - ${import.meta.env.VITE_APP_NAME}` }];
 };
 
-export default function dashboard() {
-  const { loading, role } = useAuth();
-  if (loading) {
-    return <Loading />
-  }
+export default function Dashboard() {
+  const { role } = useAuthContext()
   return (
-    <>
-      {role === 'admin' ? (
-        <div>Welcome, Admin!</div>
-      ) : role === 'member' ? (
-        <div>Welcome, User!</div>
-      ) : null}
-    </>
-  )
+    <div>
+      {role === 'admin' && <div>Welcome, Admin!</div>}
+      {role === 'member' && <div>Welcome, User!</div>}
+    </div>
+  );
 }
 

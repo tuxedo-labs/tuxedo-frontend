@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { BlogData, BlogDetailResponse, BlogResponse } from "~/types/BlogType";
+import {
+  BlogData,
+  BlogResponse,
+  BlogDetailResponse,
+} from "~/types/fragments/Blog";
 import { GetAllBlog, GetByIdBlog } from "~/repository/blog";
 export const useBlogGetAll = () => {
   const [blogs, setBlogs] = useState<BlogData[]>([]);

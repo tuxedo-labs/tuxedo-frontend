@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthFormType } from "~/types/FormType";
+import { AuthFormType } from "~/types/Elemtents";
 
 export const AuthForm: React.FC<AuthFormType> = ({ onSubmit, children }) => {
   return (

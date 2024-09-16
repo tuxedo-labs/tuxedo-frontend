@@ -1,5 +1,4 @@
-import { BlogDetailSectionType } from "~/types/Fragments";
-
+import { BlogDetailSectionType } from "~/types/fragments/Blog"
 export default function BlogDetailSection({ description, content, thumbnail }: BlogDetailSectionType) {
   return (
     <>

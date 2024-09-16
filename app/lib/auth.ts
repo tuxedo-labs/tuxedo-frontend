@@ -12,6 +12,7 @@ export const useAuth = () => {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("accessToken");
+
       if (!token) {
         setIsAuthenticated(false);
         setLoading(false);
@@ -25,10 +26,12 @@ export const useAuth = () => {
             "x-token": token,
           },
         });
-        const decoded: any = jwtDecode(token);
-        const userRole = decoded.role;
-        setRole(userRole === "admin" ? "admin" : "member");
+
         if (response.ok) {
+          const decoded: any = jwtDecode(token);
+          const userRole = decoded.role;
+          setRole(userRole === "admin" ? "admin" : "member");
+
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);

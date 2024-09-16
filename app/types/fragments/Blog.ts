@@ -27,3 +27,9 @@ export interface BlogResponse {
 export interface BlogDetailResponse {
   data: BlogData;
 }
+
+export interface BlogDetailSectionType {
+  description: string;
+  content: React.ReactNode;
+  thumbnail: string;
+}

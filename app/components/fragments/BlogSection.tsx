@@ -1,7 +1,6 @@
 import React from 'react';
 import { Heading } from '../elements/Heading';
-import { BlogSectionType } from '~/types/BlogType';
-
+import { BlogSectionType } from '~/types/fragments/Blog';
 export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
   const title = import.meta.env.VITE_APP_NAME;
 
