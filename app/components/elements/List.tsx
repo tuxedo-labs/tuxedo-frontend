@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 
 interface ListSideBarProps {
   to: string;
-  icon: React.ReactNode;
-  label: string;
+  icon?: React.ReactNode;
+  label?: string;
+  onClick?: () => void;
 }
 
-export const ListSideBar: React.FC<ListSideBarProps> = ({ to, icon, label }) => {
+export const ListSideBar: React.FC<ListSideBarProps> = ({ to, icon, label, onClick }) => {
   return (
-    <Link to={to} className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group rounded-full">
-      {icon}
-      <span className="sr-only">{label}</span>
-    </Link>
+    <li>
+      <Link
+        to={to}
+        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+      >
+        {icon}
+        <span className="ms-3">{label}</span>
+      </Link>
+    </li>
   );
 };
-
-

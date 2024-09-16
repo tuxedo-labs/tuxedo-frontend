@@ -1,5 +1,5 @@
 import React from "react";
-import { DefaultInputType } from "~/types/Elemtents";
+import { DefaultInputType } from "~/types/elements/Input";
 
 export const DefaultInput: React.FC<DefaultInputType> = ({
   type, required, value, onChange, placeholder, label

@@ -1,11 +1,12 @@
-import UiNavbarBottom from "~/components/ui/UiNavbarBottom";
+import SidebarLayout from "~/components/layouts/SidebarLayout"
 
 export default function dashboard() {
   return (
     <>
       <div>
-        <h1>hello world</h1>
-        <UiNavbarBottom />
+        <SidebarLayout>
+          <h1>hello</h1>
+        </SidebarLayout>
       </div>
     </>
   )

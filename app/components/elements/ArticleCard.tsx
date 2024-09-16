@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArticleCardType } from '~/types/Elemtents';
+import { ArticleCardType } from '~/types/elements/Article';
 
 export const ArticleCard: React.FC<ArticleCardType> = ({
   date,

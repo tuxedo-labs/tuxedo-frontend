@@ -1,5 +1,5 @@
 import React from "react";
-import { ArticleHeaderType } from "~/types/Elemtents";
+import { ArticleHeaderType } from "~/types/elements/Article";
 
 export const ArticleHeader: React.FC<ArticleHeaderType> = ({ name, time, title, avatar }) => {
   const getPlaceholder = (name: string) => {
