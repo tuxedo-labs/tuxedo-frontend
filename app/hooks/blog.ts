@@ -15,6 +15,7 @@ export const useBlogGetAll = () => {
       try {
         const response: BlogResponse = await GetAllBlog();
         setBlogs(response.data);
+        //console.log(response);
       } catch (error) {
         setError(error as Error);
       } finally {

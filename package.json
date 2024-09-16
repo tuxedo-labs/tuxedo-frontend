@@ -16,6 +16,7 @@
     "@remix-run/serve": "^2.11.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/jwt-decode": "^3.1.0",
+    "axios": "^1.7.7",
     "flowbite-react": "^0.10.1",
     "framer-motion": "^11.5.4",
     "isbot": "^4.1.0",

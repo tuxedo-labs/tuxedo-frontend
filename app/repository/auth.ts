@@ -1,4 +1,5 @@
-import { API } from "~/utils/api";
+import { Fetch } from "~/utils/Fetch";
+import axios from "axios";
 
 export const authRegister = async (
   name: string,
@@ -6,74 +7,56 @@ export const authRegister = async (
   password: string
 ) => {
   try {
-    const response = await fetch(`${API}/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
+    const response = await Fetch.post("/auth/register", {
+      name,
+      email,
+      password,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Registration failed");
-    }
-
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-    throw error;
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message || "Registration failed");
+    } else {
+      console.error("There was a problem with the request:", error);
+      throw error;
+    }
   }
 };
 
 export const authLogin = async (email: string, password: string) => {
   try {
-    const response = await fetch(`${API}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
+    const response = await Fetch.post("/auth/login", {
+      email,
+      password,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Login failed");
-    }
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Network response was not ok");
-    }
-
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-    throw error;
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message || "Login failed");
+    } else {
+      console.error("There was a problem with the request:", error);
+      throw error;
+    }
   }
 };
 
 export const verifyToken = async (token: string) => {
   try {
-    const response = await fetch(`${API}/auth/verify-token`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token }),
+    const response = await Fetch.post("/auth/verify-token", {
+      token,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Token verification failed");
-    }
-
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-    throw error;
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(
+        error.response.data.message || "Token verification failed"
+      );
+    } else {
+      console.error("There was a problem with the request:", error);
+      throw error;
+    }
   }
 };
