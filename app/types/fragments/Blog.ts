@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 export interface BlogSectionType {
   children: React.ReactNode;
+  search?: React.ReactNode;
 }
 
 export interface Author {

@@ -62,3 +62,21 @@ export const useBlogGetById = (id: string) => {
     error,
   };
 };
+
+export const useSearchBlog = (blogs: BlogData[]) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return {
+    searchQuery,
+    handleSearch,
+    filteredBlogs,
+  };
+};

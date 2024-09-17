@@ -4,6 +4,7 @@ export interface DefaultInputType {
   value?: string;
   label: string;
   //children: React.ReactNode;
+  className?: string;
   placeholder?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

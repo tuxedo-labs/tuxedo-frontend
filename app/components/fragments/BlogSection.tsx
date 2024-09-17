@@ -1,7 +1,8 @@
 import React from 'react';
 import { Heading } from '../elements/Heading';
 import { BlogSectionType } from '~/types/fragments/Blog';
-export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
+
+export const BlogSection: React.FC<BlogSectionType> = ({ children, search }) => {
   const title = import.meta.env.VITE_APP_NAME;
 
   return (
@@ -11,6 +12,11 @@ export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
           title={`${title} Blog`}
           subtitle="We use an agile approach to test assumptions and connect with the needs of your audience early and often."
         />
+        <div>
+          <div>
+            {search}
+          </div>
+        </div>
         <div className="grid gap-8 lg:grid-cols-2">
           {children}
         </div>
@@ -18,7 +24,3 @@ export const BlogSection: React.FC<BlogSectionType> = ({ children }) => {
     </section>
   );
 };
-
-export const BlogDetailSection = () => {
-
-}
