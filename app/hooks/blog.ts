@@ -5,6 +5,7 @@ import {
   BlogDetailResponse,
 } from "~/types/fragments/Blog";
 import { GetAllBlog, GetByIdBlog } from "~/repository/blog";
+
 export const useBlogGetAll = () => {
   const [blogs, setBlogs] = useState<BlogData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -16,6 +17,7 @@ export const useBlogGetAll = () => {
         const response: BlogResponse = await GetAllBlog();
         setBlogs(response.data);
         //console.log(response);
+        setLoading(true);
       } catch (error) {
         setError(error as Error);
       } finally {
@@ -41,8 +43,6 @@ export const useBlogGetById = (id: string) => {
     const fetchBlog = async () => {
       try {
         const response: BlogDetailResponse = await GetByIdBlog(id);
-        console.log(id);
-        console.table(response.data);
         setBlog(response.data);
       } catch (error) {
         setError(error as Error);
@@ -65,18 +65,35 @@ export const useBlogGetById = (id: string) => {
 
 export const useSearchBlog = (blogs: BlogData[]) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setLoading(true);
   };
 
-  const filteredBlogs = blogs.filter((blog) =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchQuery) {
+        const filtered = blogs.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        //console.log(searchQuery);
+        setFilteredBlogs(filtered);
+      } else {
+        setFilteredBlogs(blogs);
+      }
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, blogs]);
 
   return {
     searchQuery,
     handleSearch,
     filteredBlogs,
+    loading, // Return the loading state
   };
 };

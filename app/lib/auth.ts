@@ -31,7 +31,6 @@ export const useAuth = () => {
           const decoded: any = jwtDecode(token);
           const userRole = decoded.role;
           setRole(userRole === "admin" ? "admin" : "member");
-
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);

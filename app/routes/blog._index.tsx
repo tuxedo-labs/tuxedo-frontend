@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { BlogSection } from "~/components/fragments/BlogSection";
 import { ArticleCard } from "~/components/elements/ArticleCard";
 import { useBlogGetAll, useSearchBlog } from "~/hooks/blog";
 import { Loading } from "~/components/elements/Loading";
 import { DefaultInput } from "~/components/elements/Input";
+import { SkeletonArticleCard } from "~/components/elements/Skeleton";
+import { BlogSection } from "~/components/fragments/BlogSection";
 
 export default function Blog() {
-  const { blogs, loading, error } = useBlogGetAll();
-  const { searchQuery, handleSearch, filteredBlogs } = useSearchBlog(blogs)
+  const { blogs, loading: blogsLoading, error } = useBlogGetAll();
+  const { searchQuery, handleSearch, filteredBlogs, loading: searchLoading } = useSearchBlog(blogs);
 
-  if (loading) {
+  if (blogsLoading) {
     return <Loading />;
   }
 
@@ -18,7 +18,7 @@ export default function Blog() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <BlogSection
         search={(
           <DefaultInput
@@ -31,7 +31,15 @@ export default function Blog() {
           />
         )}
       >
-        {filteredBlogs.length > 0 ? (
+        {!searchLoading && filteredBlogs.length === 0 && (
+          <div className="text-white">
+            <h1 className="text-2xl">No blogs found!</h1>
+          </div>
+        )}
+        {searchLoading && (
+          [...Array(4)].map((_, i) => <SkeletonArticleCard key={i} />)
+        )}
+        {!searchLoading && filteredBlogs.length > 0 && (
           filteredBlogs.map((blog) => (
             <ArticleCard
               key={blog.ID}
@@ -43,12 +51,9 @@ export default function Blog() {
               readMoreLink={`/blog/${blog.ID}`}
             />
           ))
-        ) : (
-          <div className="flex justify-center items-center text-white">
-            <h1>Blog is not found!</h1>
-          </div>
         )}
       </BlogSection>
-    </div>);
+    </div>
+  );
 }
 

@@ -11,4 +11,5 @@ export interface ArticleHeaderType {
   name: string;
   time: string;
   title: string;
+  avatar?: string;
 }

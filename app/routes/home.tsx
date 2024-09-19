@@ -1,6 +1,6 @@
 import SidebarLayout from "~/components/layouts/SidebarLayout"
 
-export default function dashboard() {
+export default function home() {
   return (
     <>
       <div>

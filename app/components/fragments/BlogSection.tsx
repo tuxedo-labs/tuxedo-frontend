@@ -10,14 +10,14 @@ export const BlogSection: React.FC<BlogSectionType> = ({ children, search }) => 
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <Heading
           title={`${title} Blog`}
-          subtitle="We use an agile approach to test assumptions and connect with the needs of your audience early and often."
+          subtitle="Selamat datang di blog official Tuxedo Labs yang di kembangan oleh rafia9005."
         />
         <div>
           <div>
             {search}
           </div>
         </div>
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 flex-grow">
           {children}
         </div>
       </div>

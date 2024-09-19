@@ -22,11 +22,13 @@ export default function BlogId() {
         title={blog.title}
         avatar={blog.author.avatar}
       />
+
       <BlogDetailSection
         description={blog.description}
-        content={<div dangerouslySetInnerHTML={{ __html: blog.content || "" }} />}
+        content={<div className="whiteText" dangerouslySetInnerHTML={{ __html: blog.content || "" }} />}
         thumbnail={`http://103.175.220.20:1111/` + blog.thumbnail}
       />
+
     </ArticleLayout>
   );
 }
